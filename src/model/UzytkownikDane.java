@@ -3,9 +3,12 @@ package model;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+import org.hibernate.annotations.NamedQueries;
 import org.hibernate.annotations.NamedQuery;
 
-
+@NamedQueries({ 
+	@NamedQuery(name = "wszyscy", query = "from UzytkownikDane"),
+		@NamedQuery(name = "pensja1000", query = "from UzytkownikDane s  where s.pensja=1000") })
 @Entity
 public class UzytkownikDane {
 

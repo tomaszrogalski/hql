@@ -133,6 +133,28 @@ public class HibernateTest {
 			System.out.println(uzytkownikDane.toString());
 		}
 		session.getTransaction().commit();
+		
+		System.out.println();
+		System.out.println("9--------------------------------------------------------------------------------------");
+		System.out.println();
+		session.beginTransaction();
+		Query query2 = session.getNamedQuery("wszyscy");
+				List<UzytkownikDane> ASassadas = query2.list();
+		for (UzytkownikDane uzytkownikDane : ASassadas) {
+			System.out.println(uzytkownikDane.toString());
+		}
+		session.getTransaction().commit();
+		
+		System.out.println();
+		System.out.println("10-------------------------------------------------------------------------------------");
+		System.out.println();
+		session.beginTransaction();
+		Query query23 = session.getNamedQuery("pensja1000");
+		List<UzytkownikDane> ASassadasDSAD = query23.list();
+		for (UzytkownikDane uzytkownikDane : ASassadasDSAD) {
+			System.out.println(uzytkownikDane.toString());
+		}
+		session.getTransaction().commit();
 		session.close();
 	}
 }
