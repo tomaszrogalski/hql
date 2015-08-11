@@ -105,26 +105,24 @@ public class HibernateTest {
 			System.out.println(uzytkownikDane.toString());
 		}
 		session.getTransaction().commit();
-		
+
 		System.out.println();
 		System.out.println("7--------------------------------------------------------------------------------------");
 		System.out.println();
 		session.beginTransaction();
-		Criteria criteria11 = session.createCriteria(UzytkownikDane.class)
-		.add(Restrictions.isNotNull("id"));
+		Criteria criteria11 = session.createCriteria(UzytkownikDane.class).add(Restrictions.isNotNull("id"));
 		List<UzytkownikDane> ASa = criteria11.list();
 
 		for (UzytkownikDane uzytkownikDane : ASa) {
 			System.out.println(uzytkownikDane.toString());
 		}
 		session.getTransaction().commit();
-		
+
 		System.out.println();
 		System.out.println("8--------------------------------------------------------------------------------------");
 		System.out.println();
 		session.beginTransaction();
-		Criteria criteria1sda1 = session.createCriteria(UzytkownikDane.class)
-		.add(Restrictions.isNotNull("id"));
+		Criteria criteria1sda1 = session.createCriteria(UzytkownikDane.class).add(Restrictions.isNotNull("id"));
 		criteria1sda1.setMaxResults(1);
 		criteria1sda1.setFirstResult(2);
 		List<UzytkownikDane> ASasdas = criteria1sda1.list();
@@ -133,18 +131,18 @@ public class HibernateTest {
 			System.out.println(uzytkownikDane.toString());
 		}
 		session.getTransaction().commit();
-		
+
 		System.out.println();
 		System.out.println("9--------------------------------------------------------------------------------------");
 		System.out.println();
 		session.beginTransaction();
 		Query query2 = session.getNamedQuery("wszyscy");
-				List<UzytkownikDane> ASassadas = query2.list();
+		List<UzytkownikDane> ASassadas = query2.list();
 		for (UzytkownikDane uzytkownikDane : ASassadas) {
 			System.out.println(uzytkownikDane.toString());
 		}
 		session.getTransaction().commit();
-		
+
 		System.out.println();
 		System.out.println("10-------------------------------------------------------------------------------------");
 		System.out.println();
@@ -153,6 +151,29 @@ public class HibernateTest {
 		List<UzytkownikDane> ASassadasDSAD = query23.list();
 		for (UzytkownikDane uzytkownikDane : ASassadasDSAD) {
 			System.out.println(uzytkownikDane.toString());
+		}
+		session.getTransaction().commit();
+
+		System.out.println();
+		System.out.println("11-------------------------------------------------------------------------------------");
+		System.out.println();
+		session.beginTransaction();
+		Query queryqwe23 = session.createQuery("from UzytkownikDane ud where ud.id IN (5,6,7,8)");
+		List<UzytkownikDane> ASassaDadasDSAD = queryqwe23.list();
+		for (UzytkownikDane uzytkownikDane : ASassaDadasDSAD) {
+			System.out.println(uzytkownikDane.toString());
+		}
+		session.getTransaction().commit();
+
+		System.out.println();
+		System.out.println("11-------------------------------------------------------------------------------------");
+		System.out.println();
+		session.beginTransaction();
+		Query quedaSDryqwe23 = session.createQuery(
+				"from UzytkownikDane ud where ud.id  = (select cart.id from UzytkownikDane cart where cart.pensja=300)");
+		List<UzytkownikDane> ASassASDASDaDadasDSasdAD = quedaSDryqwe23.list();
+		for (UzytkownikDane uzytkownikDane : ASassASDASDaDadasDSasdAD) {
+			System.out.println(uzytkownikDane);
 		}
 		session.getTransaction().commit();
 		session.close();
