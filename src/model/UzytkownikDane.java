@@ -3,6 +3,9 @@ package model;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+import org.hibernate.annotations.NamedQuery;
+
+
 @Entity
 public class UzytkownikDane {
 

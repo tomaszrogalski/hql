@@ -2,10 +2,12 @@ package model;
 
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.criterion.Restrictions;
 
 public class HibernateTest {
 
@@ -76,6 +78,60 @@ public class HibernateTest {
 		query.setParameter("userID", 8);
 		int result = query.executeUpdate();
 		System.out.println("Rows affected: " + result);
+		session.getTransaction().commit();
+
+		System.out.println();
+		System.out.println("6--------------------------------------------------------------------------------------");
+		System.out.println();
+		session.beginTransaction();
+		Criteria criteria = session.createCriteria(UzytkownikDane.class).add(Restrictions.ge("pensja", 100))
+				.add(Restrictions.between("id", 7, 8));
+		List<UzytkownikDane> resultsss = criteria.list();
+
+		for (UzytkownikDane uzytkownikDane : resultsss) {
+			System.out.println(uzytkownikDane.toString());
+		}
+		session.getTransaction().commit();
+
+		System.out.println();
+		System.out.println("8--------------------------------------------------------------------------------------");
+		System.out.println();
+		session.beginTransaction();
+		Criteria criteriaaaaaa = session.createCriteria(UzytkownikDane.class).add(Restrictions.ge("pensja", 100))
+				.add(Restrictions.between("id", 7, 8));
+		List<UzytkownikDane> resultssasds = criteriaaaaaa.list();
+
+		for (UzytkownikDane uzytkownikDane : resultssasds) {
+			System.out.println(uzytkownikDane.toString());
+		}
+		session.getTransaction().commit();
+		
+		System.out.println();
+		System.out.println("7--------------------------------------------------------------------------------------");
+		System.out.println();
+		session.beginTransaction();
+		Criteria criteria11 = session.createCriteria(UzytkownikDane.class)
+		.add(Restrictions.isNotNull("id"));
+		List<UzytkownikDane> ASa = criteria11.list();
+
+		for (UzytkownikDane uzytkownikDane : ASa) {
+			System.out.println(uzytkownikDane.toString());
+		}
+		session.getTransaction().commit();
+		
+		System.out.println();
+		System.out.println("8--------------------------------------------------------------------------------------");
+		System.out.println();
+		session.beginTransaction();
+		Criteria criteria1sda1 = session.createCriteria(UzytkownikDane.class)
+		.add(Restrictions.isNotNull("id"));
+		criteria1sda1.setMaxResults(1);
+		criteria1sda1.setFirstResult(2);
+		List<UzytkownikDane> ASasdas = criteria1sda1.list();
+
+		for (UzytkownikDane uzytkownikDane : ASasdas) {
+			System.out.println(uzytkownikDane.toString());
+		}
 		session.getTransaction().commit();
 		session.close();
 	}
