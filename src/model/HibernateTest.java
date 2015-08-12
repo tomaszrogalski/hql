@@ -176,6 +176,13 @@ public class HibernateTest {
 			System.out.println(uzytkownikDane);
 		}
 		session.getTransaction().commit();
+
+		System.out.println();
+		System.out.println("12-------------------------------------------------------------------------------------");
+		System.out.println();
+		session.beginTransaction();
+
+		session.getTransaction().commit();
 		session.close();
 	}
 }

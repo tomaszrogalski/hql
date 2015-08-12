@@ -2,6 +2,7 @@ package model2;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -24,7 +25,7 @@ import org.hibernate.annotations.NamedQuery;
 		@NamedQuery(name = "ci_co_musza_kopytkowac", query = "select sj.imie, sj.ranga, s.imie from SmoczyJezdziec sj left join sj.smok s where s.smoczy_jezdziec is null"),
 		@NamedQuery(name = "ilu_jezdzcow", query = "select count(SJ) as iloscJezdzcow from SmoczyJezdziec SJ"),
 		@NamedQuery(name = "ma_smoka_staruszka", query = "select sj.imie from SmoczyJezdziec sj right join sj.smok s where s.wiek in (select max(w.wiek) from Smok w)"),
-		@NamedQuery(name = "wszyscy_jezdzcy_ze_smokiem_right_join", query = "select sj.imie, sj.ranga, s.imie from SmoczyJezdziec sj right join sj.smok s")})
+		@NamedQuery(name = "wszyscy_jezdzcy_ze_smokiem_right_join", query = "select sj.imie, sj.ranga, s.imie from SmoczyJezdziec sj right join sj.smok s") })
 @Entity
 @Table(name = "smoczy_jezdziec", schema = "kraina_smokow")
 public class SmoczyJezdziec {
@@ -51,10 +52,10 @@ public class SmoczyJezdziec {
 	@Column(name = "ranga")
 	private Ranga ranga;
 
-	@OneToOne(mappedBy = "smoczy_jezdziec")
+	@OneToOne(mappedBy = "smoczy_jezdziec", cascade = CascadeType.ALL)
 	private Smok smok;
 
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "bron", joinColumns = @JoinColumn(name = "smoczy_jezdziec_id") , inverseJoinColumns = @JoinColumn(name = "bron_id") )
 	private List<Bron> bron;
 
@@ -70,6 +71,8 @@ public class SmoczyJezdziec {
 		this.rozmiarButa = rozmiarButa;
 		this.ranga = ranga;
 	}
+	
+	
 
 	public Long getId() {
 		return id;

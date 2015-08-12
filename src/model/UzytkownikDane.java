@@ -8,7 +8,7 @@ import org.hibernate.annotations.NamedQuery;
 
 @NamedQueries({ 
 	@NamedQuery(name = "wszyscy", query = "from UzytkownikDane"),
-		@NamedQuery(name = "pensja1000", query = "from UzytkownikDane s  where s.pensja=1000") })
+		@NamedQuery(name = "pensja1000", query = "from UzytkownikDane") })
 @Entity
 public class UzytkownikDane {
 

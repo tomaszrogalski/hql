@@ -6,32 +6,39 @@
 
 <hibernate-configuration>
 
-    <session-factory>
+	<session-factory>
 
-        <!-- Database connection settings --> 
-        <property name="connection.driver_class">org.postgresql.Driver</property>
-        <property name="connection.url">jdbc:postgresql://localhost:5433/cwiczenie2</property>
-        <property name="connection.username">postgres</property>
-        <property name="connection.password">adminLWW</property>
+		<!-- Database connection settings -->
+		<property name="connection.driver_class">org.postgresql.Driver</property>
+		<property name="connection.url">jdbc:postgresql://localhost:5433/cwiczenie2</property>
+		<property name="connection.username">postgres</property>
+		<property name="connection.password">adminLWW</property>
 
-        <!-- JDBC connection pool (use the built-in) -->
-        <property name="connection.pool_size">1</property>
+		<!-- JDBC connection pool (use the built-in) -->
+		<property name="connection.pool_size">1</property>
 
-        <!-- SQL dialect -->
-        <property name="dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+		<!-- SQL dialect -->
+		<property name="dialect">org.hibernate.dialect.PostgreSQLDialect</property>
 
-        <!-- Disable the second-level cache  -->
-        <property name="cache.provider_class">org.hibernate.cache.internal.NoCacheProvider</property>
+		<!-- Disable the second-level cache -->
+		<property name="cache.provider_class">org.hibernate.cache.internal.NoCacheProvider</property>
 
-        <!-- Echo all executed SQL to stdout -->
-        <property name="show_sql">true</property>
+		<!-- Echo all executed SQL to stdout -->
+		<property name="show_sql">true</property>
 
-        <!-- Drop and re-create the database schema on startup -->
-        <property name="hbm2ddl.auto">update</property>
+		<!-- Drop and re-create the database schema on startup -->
+		<property name="hbm2ddl.auto">create-drop</property>
 
-        <!-- Names the annotated entity class -->
-        <mapping class="model.UzytkownikDane"/>
+		<!-- Names the annotated entity class -->
+		<mapping class="model2.Bron" />
+		<mapping class="model2.Ranga" />
+		<mapping class="model2.SmoczyJezdziec" />
+		<mapping class="model2.Smok" />
+		<mapping class="model2.StanBron" />
+		<mapping class="model2.TypBron" />
+		<mapping class="model3.Pies" />
+		<mapping class="model3.Czlowiek" />
 
-    </session-factory>
+	</session-factory>
 
 </hibernate-configuration>

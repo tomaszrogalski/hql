@@ -29,7 +29,7 @@ public class Smok {
 	// Bo nie moze istniec smok ktory nie ma jezdzca, smok zawsze musi miec
 	// jezdzca not null
 	@OneToOne
-	@JoinColumn(name = "smoczy_jezdziec_id", unique = true, nullable = false)
+	@JoinColumn(name = "smoczy_jezdziec_id", unique = true)
 	private SmoczyJezdziec smoczy_jezdziec;
 
 	public Smok() {
@@ -40,6 +40,12 @@ public class Smok {
 		this.imie = imie;
 		this.wiek = wiek;
 		this.smoczy_jezdziec = smoczyJezdziec;
+	}
+	
+	public Smok(String imie, int wiek) {
+		super();
+		this.imie = imie;
+		this.wiek = wiek;
 	}
 
 	public Long getId() {
